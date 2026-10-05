@@ -3,653 +3,438 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SallCraft - Mods, Texturas, Addons e Launchers</title>
-    <!-- Fonte Inter Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
-    <!-- FontAwesome para Ícones -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    
+    <title>SallCraft - Mods e Texturas</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
-        /* ==================== VARIÁVEIS E BASE ==================== */
+        /* Variáveis de Cores */
         :root {
-            --bg-black: #09090b;
-            --bg-card: #121217;
-            --bg-card-hover: #1c1c24;
-            --bg-input: #181820;
-            --purple-main: #8b5cf6;
-            --purple-hover: #7c3aed;
-            --purple-glow: rgba(139, 92, 246, 0.25);
-            --text-white: #ffffff;
+            --bg-dark: #0a0a0c;
+            --bg-card: #18181b;
+            --bg-card-hover: #27272a;
+            --primary-purple: #8b5cf6;
+            --primary-purple-hover: #7c3aed;
+            --text-white: #f8fafc;
             --text-gray: #a1a1aa;
-            --text-muted: #71717a;
-            --border-color: #27272a;
-            --radius-sm: 8px;
-            --radius-md: 12px;
-            --radius-lg: 16px;
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
-            -webkit-tap-highlight-color: transparent;
+            font-family: 'Inter', sans-serif;
         }
 
         body {
-            background-color: var(--bg-black);
+            background-color: var(--bg-dark);
             color: var(--text-white);
-            line-height: 1.5;
-            min-height: 100vh;
-            display: flex;
-            flex-direction: column;
+            line-height: 1.6;
         }
 
-        a {
-            text-decoration: none;
-            color: inherit;
-        }
-
-        button {
-            cursor: pointer;
-            border: none;
-            outline: none;
-            font-family: inherit;
-        }
-
-        /* ==================== CABEÇALHO (HEADER) ==================== */
+        /* Cabeçalho */
         header {
-            background-color: rgba(18, 18, 23, 0.9);
-            backdrop-filter: blur(12px);
-            position: sticky;
-            top: 0;
-            z-index: 1000;
-            border-bottom: 1px solid var(--border-color);
-            padding: 0.8rem 5%;
+            background-color: var(--bg-card);
+            padding: 1rem 5%;
             display: flex;
             justify-content: space-between;
             align-items: center;
+            border-bottom: 2px solid var(--primary-purple);
         }
 
-        .header-brand {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .header-logo-img {
-            height: 42px;
-            width: auto;
-            border-radius: 6px;
-            object-fit: contain;
-        }
-
-        .logo-text {
-            font-size: 1.6rem;
-            font-weight: 900;
-            letter-spacing: -0.5px;
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
             color: var(--text-white);
+            text-decoration: none;
         }
 
-        .logo-text span {
-            color: var(--purple-main);
+        .logo span {
+            color: var(--primary-purple);
         }
 
-        .nav-actions {
+        .nav-controls {
             display: flex;
+            gap: 1.5rem;
             align-items: center;
-            gap: 1rem;
+        }
+
+        .support-btn {
+            background-color: transparent;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--primary-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .support-btn:hover {
+            background-color: var(--primary-purple);
         }
 
         .lang-select {
-            background-color: var(--bg-input);
+            background-color: var(--bg-dark);
             color: var(--text-white);
-            border: 1px solid var(--border-color);
-            padding: 0.5rem 0.8rem;
-            border-radius: var(--radius-sm);
-            font-weight: 600;
-            font-size: 0.85rem;
+            border: 1px solid var(--text-gray);
+            padding: 0.5rem;
+            border-radius: 6px;
+            outline: none;
             cursor: pointer;
-            transition: border-color 0.2s;
         }
 
-        .lang-select:hover {
-            border-color: var(--purple-main);
-        }
-
-        .btn-support {
-            background-color: rgba(139, 92, 246, 0.1);
-            color: var(--purple-main);
-            border: 1px solid var(--purple-main);
-            padding: 0.5rem 1rem;
-            border-radius: var(--radius-sm);
-            font-weight: 700;
-            font-size: 0.85rem;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            transition: all 0.3s;
-        }
-
-        .btn-support:hover {
-            background-color: var(--purple-main);
-            color: var(--text-white);
-            box-shadow: 0 0 15px var(--purple-glow);
-        }
-
-        /* ==================== HERO SECTION ==================== */
+        /* Seção Hero (Início) */
         .hero {
             text-align: center;
-            padding: 3.5rem 1.5rem 2rem 1.5rem;
-            background: radial-gradient(circle at top, rgba(139, 92, 246, 0.15) 0%, rgba(9, 9, 11, 0) 70%);
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .hero-logo-container {
-            margin-bottom: 1rem;
-        }
-
-        .hero-logo {
-            max-width: 140px;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 8px 25px rgba(0,0,0,0.5);
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(139,92,246,0.15) 0%, var(--bg-dark) 100%);
         }
 
         .hero h1 {
-            font-size: 2.2rem;
-            font-weight: 800;
-            margin-bottom: 0.8rem;
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
         }
 
         .hero p {
             color: var(--text-gray);
-            font-size: 1rem;
-            max-width: 680px;
-            margin: 0 auto 1.5rem auto;
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
         }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .social-btn {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            color: var(--text-white);
-            padding: 0.5rem 1.2rem;
-            border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: all 0.2s;
-        }
-
-        .social-btn:hover {
-            border-color: var(--purple-main);
-            transform: translateY(-2px);
-            color: var(--purple-main);
-        }
-
-        /* ==================== BARRA DE EDIÇÕES E NAVEGAÇÃO ==================== */
-        .main-nav-container {
-            max-width: 1300px;
-            margin: 2rem auto 0 auto;
-            padding: 0 5%;
-        }
-
+        /* Controle de Versões (Tabs) */
         .edition-tabs {
             display: flex;
             justify-content: center;
-            gap: 0.6rem;
-            flex-wrap: wrap;
-            margin-bottom: 1.5rem;
+            gap: 1rem;
+            margin: 2rem 0;
         }
 
         .tab-btn {
             background-color: var(--bg-card);
-            color: var(--text-gray);
-            border: 1px solid var(--border-color);
-            padding: 0.8rem 1.4rem;
-            font-size: 0.95rem;
-            font-weight: 700;
-            border-radius: var(--radius-md);
-            transition: all 0.25s;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .tab-btn:hover {
             color: var(--text-white);
-            border-color: var(--purple-main);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .tab-btn.active {
-            background-color: var(--purple-main);
-            color: var(--text-white);
-            border-color: var(--purple-main);
-            box-shadow: 0 4px 20px var(--purple-glow);
+            background-color: var(--primary-purple);
         }
 
-        /* ==================== BARRAS DE CONTROLE (BUSCA, CATEGORIAS E ORDENAÇÃO) ==================== */
-        .controls-bar {
-            background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
-            padding: 1rem;
+        /* Categorias */
+        .categories {
             display: flex;
-            flex-direction: column;
-            gap: 1rem;
-            margin-bottom: 2rem;
-        }
-
-        .search-sort-row {
-            display: flex;
-            gap: 1rem;
+            justify-content: center;
             flex-wrap: wrap;
-        }
-
-        .search-box {
-            flex: 1;
-            min-width: 260px;
-            position: relative;
-        }
-
-        .search-box i {
-            position: absolute;
-            left: 1rem;
-            top: 50%;
-            transform: translateY(-50%);
-            color: var(--text-muted);
-        }
-
-        .search-input {
-            width: 100%;
-            background-color: var(--bg-input);
-            border: 1px solid var(--border-color);
-            padding: 0.75rem 1rem 0.75rem 2.8rem;
-            border-radius: var(--radius-sm);
-            color: var(--text-white);
-            font-size: 0.9rem;
-            outline: none;
-            transition: border-color 0.2s;
-        }
-
-        .search-input:focus {
-            border-color: var(--purple-main);
-        }
-
-        .sort-box {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .sort-select {
-            background-color: var(--bg-input);
-            color: var(--text-white);
-            border: 1px solid var(--border-color);
-            padding: 0.75rem 1rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.85rem;
-            font-weight: 600;
-            outline: none;
-            cursor: pointer;
-        }
-
-        .categories-row {
-            display: flex;
             gap: 0.5rem;
-            overflow-x: auto;
-            padding-bottom: 4px;
-            scrollbar-width: thin;
+            margin-bottom: 3rem;
+            padding: 0 5%;
         }
 
         .cat-btn {
-            background-color: var(--bg-input);
+            background-color: transparent;
             color: var(--text-gray);
-            border: 1px solid var(--border-color);
+            border: 1px solid var(--text-gray);
             padding: 0.4rem 1rem;
             border-radius: 20px;
-            font-size: 0.85rem;
-            font-weight: 600;
-            white-space: nowrap;
-            transition: all 0.2s;
+            cursor: pointer;
+            transition: 0.3s;
         }
 
         .cat-btn:hover, .cat-btn.active {
-            border-color: var(--purple-main);
-            color: var(--text-white);
-            background-color: rgba(139, 92, 246, 0.15);
+            border-color: var(--primary-purple);
+            color: var(--primary-purple);
         }
 
-        /* ==================== CONTAINER DE CONTEÚDO E GRID ==================== */
+        /* Grid de Conteúdo */
         .content-container {
-            max-width: 1300px;
+            padding: 0 5% 5rem 5%;
+            max-width: 1400px;
             margin: 0 auto;
-            padding: 0 5% 4rem 5%;
-            flex: 1;
-            width: 100%;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 1.8rem;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
         }
 
-        /* ==================== CARD DE MOD/TEXTURA (STYLE CURSEFORGE/MCPEDL) ==================== */
+        /* Cartão de Mod/Textura */
         .card {
             background-color: var(--bg-card);
-            border: 1px solid var(--border-color);
-            border-radius: var(--radius-md);
+            border-radius: 12px;
             overflow: hidden;
-            display: flex;
-            flex-direction: column;
-            transition: transform 0.25s, border-color 0.25s, box-shadow 0.25s;
-            position: relative;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid transparent;
         }
 
         .card:hover {
-            transform: translateY(-4px);
-            border-color: var(--purple-main);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.5), 0 0 15px var(--purple-glow);
-        }
-
-        .card-img-wrapper {
-            position: relative;
-            width: 100%;
-            height: 190px;
-            background-color: #1a1a22;
-            overflow: hidden;
+            transform: translateY(-5px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
         }
 
         .card-img {
             width: 100%;
-            height: 100%;
+            height: 180px;
             object-fit: cover;
-            transition: transform 0.3s;
+            background-color: #2a2a30; /* Cor de fundo caso a foto não carregue */
         }
 
-        .card:hover .card-img {
-            transform: scale(1.04);
-        }
-
-        .card-bookmark-btn {
-            position: absolute;
-            top: 10px;
-            right: 10px;
-            background-color: rgba(9, 9, 11, 0.75);
-            backdrop-filter: blur(8px);
-            border: 1px solid var(--border-color);
-            color: var(--text-gray);
-            width: 36px;
-            height: 36px;
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-size: 1rem;
-            transition: all 0.2s;
-            z-index: 2;
-        }
-
-        .card-bookmark-btn:hover, .card-bookmark-btn.saved {
-            color: #ef4444;
-            background-color: rgba(9, 9, 11, 0.9);
-            border-color: #ef4444;
-        }
-
-        .card-body {
-            padding: 1.25rem;
-            display: flex;
-            flex-direction: column;
-            flex: 1;
+        .card-content {
+            padding: 1.5rem;
         }
 
         .card-title {
-            font-size: 1.15rem;
-            font-weight: 800;
-            margin-bottom: 0.6rem;
-            color: var(--text-white);
-            line-height: 1.3;
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
         }
 
-        .card-meta {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 1.2rem;
-            font-size: 0.8rem;
-        }
-
-        .card-version-badge {
-            background-color: rgba(139, 92, 246, 0.15);
-            color: #c4b5fd;
-            border: 1px solid rgba(139, 92, 246, 0.3);
+        .card-version {
+            display: inline-block;
+            background-color: rgba(139, 92, 246, 0.2);
+            color: #bfa1f9;
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
-            font-weight: 700;
-        }
-
-        .card-downloads {
-            color: var(--text-gray);
-            display: flex;
-            align-items: center;
-            gap: 4px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
             font-weight: 600;
         }
 
-        /* Botões de Ação do Card (4 Botões) */
-        .card-actions-grid {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.6rem;
-            margin-top: auto;
-        }
-
-        .btn-action {
-            padding: 0.6rem 0.4rem;
-            border-radius: var(--radius-sm);
-            font-size: 0.78rem;
-            font-weight: 700;
-            text-align: center;
+        .btn-group {
             display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 6px;
-            transition: all 0.2s;
+            flex-direction: column;
+            gap: 0.5rem;
         }
 
-        .btn-dl-primary {
-            background-color: var(--purple-main);
-            color: var(--text-white);
-            grid-column: span 1;
-        }
-
-        .btn-dl-primary:hover {
-            background-color: var(--purple-hover);
-            box-shadow: 0 0 10px var(--purple-glow);
-        }
-
-        .btn-dl-secondary {
-            background-color: var(--bg-input);
-            color: var(--text-white);
-            border: 1px solid var(--border-color);
-            grid-column: span 1;
-        }
-
-        .btn-dl-secondary:hover {
-            border-color: var(--text-gray);
-            background-color: #22222d;
-        }
-
-        .btn-tut-install {
-            background-color: rgba(16, 185, 129, 0.1);
-            color: #34d399;
-            border: 1px solid rgba(16, 185, 129, 0.3);
-            grid-column: span 1;
-        }
-
-        .btn-tut-install:hover {
-            background-color: rgba(16, 185, 129, 0.25);
-        }
-
-        .btn-tut-bypass {
-            background-color: rgba(245, 158, 11, 0.1);
-            color: #fbbf24;
-            border: 1px solid rgba(245, 158, 11, 0.3);
-            grid-column: span 1;
-        }
-
-        .btn-tut-bypass:hover {
-            background-color: rgba(245, 158, 11, 0.25);
-        }
-
-        /* Status Vazio */
-        .empty-state {
+        .btn {
+            display: block;
             text-align: center;
-            padding: 4rem 1rem;
-            grid-column: 1 / -1;
+            text-decoration: none;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .btn-download {
+            background-color: var(--primary-purple);
+            color: var(--text-white);
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-purple-hover);
+        }
+
+        .btn-tutorial {
+            background-color: transparent;
             color: var(--text-gray);
+            border: 1px solid var(--text-gray);
         }
 
-        .empty-state i {
-            font-size: 3rem;
-            color: var(--text-muted);
-            margin-bottom: 1rem;
+        .btn-tutorial:hover {
+            border-color: var(--text-white);
+            color: var(--text-white);
         }
 
-        /* ==================== RODAPÉ (FOOTER) ==================== */
-        footer {
-            background-color: var(--bg-card);
-            border-top: 1px solid var(--border-color);
-            padding: 2.5rem 5% 1.5rem 5%;
-            margin-top: auto;
-        }
-
-        .footer-content {
-            max-width: 1300px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            flex-wrap: wrap;
-            gap: 1.5rem;
-            padding-bottom: 2rem;
-            border-bottom: 1px solid var(--border-color);
-        }
-
-        .footer-brand p {
-            color: var(--text-gray);
-            font-size: 0.85rem;
-            margin-top: 0.4rem;
-        }
-
-        .footer-copy {
-            max-width: 1300px;
-            margin: 1.5rem auto 0 auto;
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.8rem;
-        }
-
-        /* Utility */
+        /* Ocultar seções dinamicamente */
         .hidden {
             display: none !important;
         }
 
-        /* RESPONSIVIDADE */
+        /* Responsividade */
         @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 0.8rem;
-            }
-            .hero h1 { font-size: 1.8rem; }
-            .edition-tabs { flex-direction: flex; flex-wrap: wrap; }
-            .tab-btn { flex: 1 1 40%; justify-content: center; font-size: 0.85rem; }
-            .card-actions-grid { grid-template-columns: 1fr; }
-            .btn-action { grid-column: span 1 !important; }
+            .hero h1 { font-size: 2rem; }
+            header { flex-direction: column; gap: 1rem; }
+            .edition-tabs { flex-direction: column; padding: 0 2rem; }
         }
     </style>
 </head>
 <body>
 
-    <!-- CABEÇALHO -->
     <header>
-        <div class="header-brand">
-            <!-- Caso tenha um arquivo de logo (ex: logo.png), insira aqui -->
-            <a href="#" onclick="switchTab('bedrock')" class="logo-text">Sall<span>Craft</span></a>
-        </div>
-        <div class="nav-actions">
+        <a href="#" class="logo">Sall<span>Craft</span></a>
+        <div class="nav-controls">
             <select class="lang-select" id="langSwitcher" onchange="changeLanguage()">
-                <option value="pt">🇵🇹 Português</option>
-                <option value="en">🇺🇸 English</option>
-                <option value="es">🇪🇸 Español</option>
+                <option value="pt">Português</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
             </select>
-            <a href="mailto:sallmccount@gmail.com" class="btn-support">
-                <i class="fa-solid fa-envelope"></i>
-                <span data-i18n="support">Suporte</span>
-            </a>
+            <a href="mailto:sallmccount@gmail.com" class="support-btn" data-i18n="support">Suporte</a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
     <section class="hero">
-        <div class="hero-logo-container">
-            <!-- Insira sua foto de logo aqui se desejar -->
-            <!-- <img src="SUA_LOGO.png" alt="SallCraft Logo" class="hero-logo"> -->
-        </div>
-        <h1 data-i18n="hero_title">SallCraft</h1>
-        <p data-i18n="hero_desc">Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.</p>
-        
-        <!-- REDES SOCIAIS -->
-        <div class="social-links">
-            <a href="https://tiktok.com/@sall.skkkkk" target="_blank" rel="noopener" class="social-btn">
-                <i class="fa-brands fa-tiktok"></i> TikTok
-            </a>
-            <a href="https://youtube.com/@sallkng?si=FRe6uNwS9JgJo" target="_blank" rel="noopener" class="social-btn">
-                <i class="fa-brands fa-youtube"></i> YouTube
-            </a>
-            <a href="https://discord.gg/FmkywjTpzF" target="_blank" rel="noopener" class="social-btn">
-                <i class="fa-brands fa-discord"></i> Discord
-            </a>
-        </div>
+        <h1 data-i18n="title">Bem vindo ao SallCraft</h1>
+        <p data-i18n="desc">Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.</p>
     </section>
 
-    <!-- NAVEGAÇÃO PRINCIPAL (EDITIONS & CLIENTS) -->
-    <div class="main-nav-container">
-        <div class="edition-tabs">
-            <button class="tab-btn active" id="tab-bedrock" onclick="switchTab('bedrock')">
-                <i class="fa-solid fa-cube"></i> Minecraft Bedrock
-            </button>
-            <button class="tab-btn" id="tab-java" onclick="switchTab('java')">
-                <i class="fa-solid fa-mug-hot"></i> Minecraft Java
-            </button>
-            <button class="tab-btn" id="tab-client-bedrock" onclick="switchTab('client-bedrock')">
-                <i class="fa-solid fa-gamepad"></i> Client Bedrock
-            </button>
-            <button class="tab-btn" id="tab-launcher-java" onclick="switchTab('launcher-java')">
-                <i class="fa-solid fa-rocket"></i> Launcher Java
-            </button>
-            <button class="tab-btn" id="tab-saved" onclick="switchTab('saved')">
-                <i class="fa-solid fa-heart"></i> <span data-i18n="tab_saved">Salvos</span>
-            </button>
+    <div class="edition-tabs">
+        <button class="tab-btn active" onclick="switchEdition('java')" id="btn-java">Minecraft Java</button>
+        <button class="tab-btn" onclick="switchEdition('bedrock')" id="btn-bedrock">Minecraft Bedrock</button>
+    </div>
+
+    <!-- Categorias Java -->
+    <div class="categories" id="cats-java">
+        <button class="cat-btn active" data-i18n="cat_textures">Texturas</button>
+        <button class="cat-btn" data-i18n="cat_shaders">Shaders</button>
+        <button class="cat-btn" data-i18n="cat_mods">Mods</button>
+        <button class="cat-btn" data-i18n="cat_modpacks">Modpacks</button>
+        <button class="cat-btn" data-i18n="cat_schematics">Schematics</button>
+        <button class="cat-btn" data-i18n="cat_worlds">Mundos</button>
+    </div>
+
+    <!-- Categorias Bedrock -->
+    <div class="categories hidden" id="cats-bedrock">
+        <button class="cat-btn active" data-i18n="cat_textures">Texturas</button>
+        <button class="cat-btn" data-i18n="cat_shaders">Shaders</button>
+        <button class="cat-btn" data-i18n="cat_mods">Mods</button>
+        <button class="cat-btn" data-i18n="cat_addons">Addons</button>
+        <button class="cat-btn" data-i18n="cat_holoprints">Holoprints</button>
+        <button class="cat-btn" data-i18n="cat_worlds">Mundos</button>
+    </div>
+
+    <main class="content-container">
+        <!-- GRID JAVA -->
+        <div class="grid" id="grid-java">
+            
+            <!-- Exemplo de Card Java -->
+            <div class="card">
+                <!-- Para colocar sua imagem, troque o src abaixo pelo link ou caminho da foto -->
+                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+do+Mod+Aqui" alt="Capa do Mod" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Dweller Survival Modpack</h3>
+                    <span class="card-version">Java 1.20.1 / 1.21</span>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+da+Textura" alt="Capa da Textura" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Realistic Shaders + Textura</h3>
+                    <span class="card-version">Java 26.3</span>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                    </div>
+                </div>
+            </div>
+            
         </div>
 
-        <!-- CONTROLES (BUSCA, CATEGORIAS, ORDENAÇÃO) -->
-        <div class="controls-bar" id="controlsBar">
-            <div class="search-sort-row">
-                <div class="search-box">
-                    <i class="fa-solid fa-magnifying-glass"></i>
-                    <input type="text" id="searchInput" class="search-input" placeholder="Pesquisar..." oninput="filterAndRender()">
+        <!-- GRID BEDROCK -->
+        <div class="grid hidden" id="grid-bedrock">
+            
+            <!-- Exemplo de Card Bedrock -->
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+do+Addon" alt="Capa do Addon" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Zombie Apocalypse Addon</h3>
+                    <span class="card-version">Bedrock 26.52</span>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                    </div>
                 </div>
-                <div class="sort-box">
-                    <i class="fa-solid fa-sort" style="color: var(--text-gray);"></i>
-                    <select id="sortSelect" class="sort-select" 
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Script de Funcionalidades (Idiomas e Troca de Edição) -->
+    <script>
+        // Dicionário de Idiomas
+        const translations = {
+            pt: {
+                support: "Suporte",
+                title: "Bem vindo ao SallCraft",
+                desc: "Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.",
+                cat_textures: "Texturas", cat_shaders: "Shaders", cat_mods: "Mods", 
+                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Mundos", 
+                cat_addons: "Addons", cat_holoprints: "Holoprints",
+                btn_dl_1: "Download Principal", btn_dl_2: "Download Secundário",
+                btn_tut_dl: "Tutorial: Como Baixar", btn_tut_enc: "Tutorial: Passar Encurtador"
+            },
+            en: {
+                support: "Support",
+                title: "Welcome to SallCraft",
+                desc: "Welcome to SallCraft, here you will find textures, mods, and much more for your Minecraft Bedrock and Java.",
+                cat_textures: "Textures", cat_shaders: "Shaders", cat_mods: "Mods", 
+                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Worlds", 
+                cat_addons: "Addons", cat_holoprints: "Holoprints",
+                btn_dl_1: "Main Download", btn_dl_2: "Secondary Download",
+                btn_tut_dl: "Tutorial: How to Download", btn_tut_enc: "Tutorial: Bypass Shortener"
+            },
+            es: {
+                support: "Soporte",
+                title: "Bienvenido a SallCraft",
+                desc: "Bienvenido a SallCraft, aquí encontrarás texturas, mods y mucho más para tu Minecraft Bedrock y Java.",
+                cat_textures: "Texturas", cat_shaders: "Shaders", cat_mods: "Mods", 
+                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Mundos", 
+                cat_addons: "Addons", cat_holoprints: "Holoprints",
+                btn_dl_1: "Descarga Principal", btn_dl_2: "Descarga Secundaria",
+                btn_tut_dl: "Tutorial: Cómo Descargar", btn_tut_enc: "Tutorial: Pasar Acortador"
+            }
+        };
+
+        // Função para mudar o idioma
+        function changeLanguage() {
+            const lang = document.getElementById('langSwitcher').value;
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+        }
+
+        // Função para alternar entre Java e Bedrock
+        function switchEdition(edition) {
+            // Botões de aba
+            document.getElementById('btn-java').classList.remove('active');
+            document.getElementById('btn-bedrock').classList.remove('active');
+            document.getElementById('btn-' + edition).classList.add('active');
+
+            // Categorias
+            document.getElementById('cats-java').classList.add('hidden');
+            document.getElementById('cats-bedrock').classList.add('hidden');
+            document.getElementById('cats-' + edition).classList.remove('hidden');
+
+            // Grids de Conteúdo
+            document.getElementById('grid-java').classList.add('hidden');
+            document.getElementById('grid-bedrock').classList.add('hidden');
+            document.getElementById('grid-' + edition).classList.remove('hidden');
+        }
+
+        // Script para deixar a categoria clicada como 'ativa' (efeito visual)
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove a classe ativa dos botões irmãos
+                let siblings = this.parentNode.children;
+                for(let el of siblings) {
+                    el.classList.remove('active');
+                }
+                // Adiciona no botão clicado
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
