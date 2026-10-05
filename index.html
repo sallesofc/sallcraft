@@ -1,354 +1,440 @@
 <!DOCTYPE html>
-<html lang="pt-BR" class="dark">
+<html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SallCraft - Texturas, Mods e Recursos para Minecraft Bedrock e Java</title>
-    <!-- Tailwind CSS CDN -->
-    <script src="https://cdn.tailwindcss.com"></script>
-    <!-- FontAwesome Icons CDN -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <!-- Google Fonts (Inter & Orbitron) -->
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&family=Orbitron:wght@700;900&display=swap" rel="stylesheet">
-    
-    <script>
-        tailwind.config = {
-            darkMode: 'class',
-            theme: {
-                extend: {
-                    colors: {
-                        brand: {
-                            black: '#0a090f',
-                            card: '#13111c',
-                            cardHover: '#1c192b',
-                            purple: '#8b5cf6',
-                            purpleDark: '#6d28d9',
-                            purpleLight: '#a78bfa',
-                            accent: '#c084fc'
-                        }
-                    },
-                    fontFamily: {
-                        sans: ['Inter', 'sans-serif'],
-                        display: ['Orbitron', 'sans-serif']
-                    }
-                }
-            }
-        }
-    </script>
+    <title>SallCraft - Mods, Texturas Etc.</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
     <style>
+        /* Variáveis de Cores */
+        :root {
+            --bg-dark: #0a0a0c;
+            --bg-card: #18181b;
+            --bg-card-hover: #27272a;
+            --primary-purple: #8b5cf6;
+            --primary-purple-hover: #7c3aed;
+            --text-white: #f8fafc;
+            --text-gray: #a1a1aa;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Inter', sans-serif;
+        }
+
         body {
-            background-color: #0a090f;
-            color: #ffffff;
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            line-height: 1.6;
         }
-        .glow-purple {
-            box-shadow: 0 0 25px rgba(139, 92, 246, 0.25);
+
+        /* Cabeçalho */
+        header {
+            background-color: var(--bg-card);
+            padding: 1rem 5%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid var(--primary-purple);
         }
-        .glow-purple-lg {
-            box-shadow: 0 0 35px rgba(139, 92, 246, 0.4);
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-white);
+            text-decoration: none;
         }
-        .custom-scrollbar::-webkit-scrollbar {
-            width: 8px;
+
+        .logo span {
+            color: var(--primary-purple);
         }
-        .custom-scrollbar::-webkit-scrollbar-track {
-            background: #0a090f;
+
+        .nav-controls {
+            display: flex;
+            gap: 1.5rem;
+            align-items: center;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-            background: #2e2842;
+
+        .support-btn {
+            background-color: transparent;
+            color: var(--text-white);
+            text-decoration: none;
+            font-weight: 600;
+            border: 1px solid var(--primary-purple);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            transition: 0.3s;
+        }
+
+        .support-btn:hover {
+            background-color: var(--primary-purple);
+        }
+
+        .lang-select {
+            background-color: var(--bg-dark);
+            color: var(--text-white);
+            border: 1px solid var(--text-gray);
+            padding: 0.5rem;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
+        }
+
+        /* Seção Hero (Início) */
+        .hero {
+            text-align: center;
+            padding: 4rem 2rem;
+            background: linear-gradient(180deg, rgba(139,92,246,0.15) 0%, var(--bg-dark) 100%);
+        }
+
+        .hero h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .hero p {
+            color: var(--text-gray);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Controle de Versões (Tabs) */
+        .edition-tabs {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .tab-btn {
+            background-color: var(--bg-card);
+            color: var(--text-white);
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+            font-weight: 600;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .tab-btn.active {
+            background-color: var(--primary-purple);
+        }
+
+        /* Categorias */
+        .categories {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 3rem;
+            padding: 0 5%;
+        }
+
+        .cat-btn {
+            background-color: transparent;
+            color: var(--text-gray);
+            border: 1px solid var(--text-gray);
+            padding: 0.4rem 1rem;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .cat-btn:hover, .cat-btn.active {
+            border-color: var(--primary-purple);
+            color: var(--primary-purple);
+        }
+
+        /* Grid de Conteúdo */
+        .content-container {
+            padding: 0 5% 5rem 5%;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Cartão de Mod/Textura */
+        .card {
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            border: 1px solid transparent;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-purple);
+            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
+        }
+
+        .card-img {
+            width: 100%;
+            height: 180px;
+            object-fit: cover;
+            background-color: #2a2a30; /* Cor de fundo caso a foto não carregue */
+        }
+
+        .card-content {
+            padding: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.2rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .card-version {
+            display: inline-block;
+            background-color: rgba(139, 92, 246, 0.2);
+            color: #bfa1f9;
+            padding: 0.2rem 0.6rem;
             border-radius: 4px;
+            font-size: 0.85rem;
+            margin-bottom: 1rem;
+            font-weight: 600;
         }
-        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-            background: #8b5cf6;
+
+        .btn-group {
+            display: flex;
+            flex-direction: column;
+            gap: 0.5rem;
+        }
+
+        .btn {
+            display: block;
+            text-align: center;
+            text-decoration: none;
+            padding: 0.6rem;
+            border-radius: 6px;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: 0.2s;
+        }
+
+        .btn-download {
+            background-color: var(--primary-purple);
+            color: var(--text-white);
+        }
+
+        .btn-download:hover {
+            background-color: var(--primary-purple-hover);
+        }
+
+        .btn-tutorial {
+            background-color: transparent;
+            color: var(--text-gray);
+            border: 1px solid var(--text-gray);
+        }
+
+        .btn-tutorial:hover {
+            border-color: var(--text-white);
+            color: var(--text-white);
+        }
+
+        /* Ocultar seções dinamicamente */
+        .hidden {
+            display: none !important;
+        }
+
+        /* Responsividade */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2rem; }
+            header { flex-direction: column; gap: 1rem; }
+            .edition-tabs { flex-direction: column; padding: 0 2rem; }
         }
     </style>
 </head>
-<body class="font-sans antialiased min-h-screen flex flex-col custom-scrollbar selection:bg-brand-purple selection:text-white">
+<body>
 
-    <!-- NAVBAR -->
-    <header class="sticky top-0 z-40 bg-brand-black/90 backdrop-blur-md border-b border-brand-purple/20">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-20">
-                
-                <!-- Logo -->
-                <div class="flex items-center space-x-3 cursor-pointer" onclick="resetFilters()">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-brand-purpleDark to-brand-accent flex items-center justify-center font-display font-bold text-xl text-white shadow-lg shadow-brand-purple/30">
-                        S
-                    </div>
-                    <span class="font-display font-black text-2xl tracking-wider text-white">
-                        SALL<span class="text-brand-purpleLight">CRAFT</span>
-                    </span>
-                </div>
-
-                <!-- Right Controls: Language & Support -->
-                <div class="flex items-center space-x-3">
-                    
-                    <!-- Language Selector -->
-                    <div class="relative inline-block text-left">
-                        <select id="langSelect" onchange="changeLanguage(this.value)" class="bg-brand-card text-white text-sm font-medium rounded-lg border border-brand-purple/30 focus:border-brand-purple focus:outline-none px-3 py-2 cursor-pointer hover:border-brand-purple transition">
-                            <option value="pt">🇧🇷 Português</option>
-                            <option value="en">🇺🇸 English</option>
-                            <option value="es">🇪🇸 Español</option>
-                        </select>
-                    </div>
-
-                    <!-- Support Button -->
-                    <button onclick="openSupportModal()" class="flex items-center space-x-2 bg-brand-purple/20 hover:bg-brand-purple text-brand-purpleLight hover:text-white border border-brand-purple/40 font-semibold text-sm px-4 py-2 rounded-lg transition duration-200">
-                        <i class="fa-solid fa-headset"></i>
-                        <span data-i18n="nav_support">Suporte</span>
-                    </button>
-                </div>
-            </div>
+    <header>
+        <a href="#" class="logo">Sall<span>Craft</span></a>
+        <div class="nav-controls">
+            <select class="lang-select" id="langSwitcher" onchange="changeLanguage()">
+                <option value="pt">Português</option>
+                <option value="en">English</option>
+                <option value="es">Español</option>
+            </select>
+            <a href="mailto:sallmccount@gmail.com" class="support-btn" data-i18n="support">Suporte</a>
         </div>
     </header>
 
-    <!-- HERO SECTION -->
-    <section class="relative py-12 px-4 sm:px-6 lg:px-8 text-center bg-gradient-to-b from-brand-purple/10 to-transparent">
-        <div class="max-w-4xl mx-auto">
-            <h1 class="font-display text-4xl sm:text-5xl font-extrabold text-white mb-4 tracking-tight">
-                SALL<span class="text-brand-purpleLight">CRAFT</span>
-            </h1>
-            <p id="heroDesc" data-i18n="hero_desc" class="text-base sm:text-lg text-gray-300 max-w-2xl mx-auto font-normal leading-relaxed">
-                Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.
-            </p>
-
-            <!-- Search Bar -->
-            <div class="mt-8 max-w-xl mx-auto relative">
-                <input type="text" id="searchInput" oninput="filterItems()" placeholder="Pesquisar por nome, mod ou textura..." data-i18n-ph="search_ph"
-                    class="w-full bg-brand-card/90 text-white placeholder-gray-400 pl-11 pr-4 py-3.5 rounded-xl border border-brand-purple/30 focus:border-brand-purple focus:ring-2 focus:ring-brand-purple/40 focus:outline-none transition shadow-lg">
-                <i class="fa-solid fa-magnifying-glass absolute left-4 top-1/2 -translate-y-1/2 text-brand-purpleLight"></i>
-            </div>
-        </div>
+    <section class="hero">
+        <h1 data-i18n="title">Bem vindo ao SallCraft</h1>
+        <p data-i18n="desc">Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.</p>
     </section>
 
-    <!-- MAIN CONTENT AREA -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 flex-grow w-full">
-        
-        <!-- MAIN TABS: BEDROCK vs JAVA -->
-        <div class="flex justify-center mb-8">
-            <div class="bg-brand-card p-1.5 rounded-2xl border border-brand-purple/30 flex space-x-2 shadow-lg">
-                <button id="btnBedrock" onclick="switchEdition('bedrock')" 
-                    class="flex items-center space-x-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 bg-brand-purple text-white shadow-md">
-                    <i class="fa-solid fa-cube"></i>
-                    <span>Minecraft Bedrock</span>
-                </button>
-                <button id="btnJava" onclick="switchEdition('java')" 
-                    class="flex items-center space-x-2 px-6 py-3 rounded-xl font-bold text-sm sm:text-base transition-all duration-200 text-gray-400 hover:text-white hover:bg-brand-purple/20">
-                    <i class="fa-solid fa-coffee"></i>
-                    <span>Minecraft Java</span>
-                </button>
-            </div>
-        </div>
+    <div class="edition-tabs">
+        <button class="tab-btn active" onclick="switchEdition('java')" id="btn-java">Minecraft Java</button>
+        <button class="tab-btn" onclick="switchEdition('bedrock')" id="btn-bedrock">Minecraft Bedrock</button>
+    </div>
 
-        <!-- CATEGORIES FILTER BAR -->
-        <div class="mb-8">
-            <div id="categoryContainer" class="flex flex-wrap items-center justify-center gap-2 sm:gap-3">
-                <!-- Dynamically populated categories -->
-            </div>
-        </div>
+    <!-- Categorias Java -->
+    <div class="categories" id="cats-java">
+        <button class="cat-btn active" data-i18n="cat_textures">Texturas</button>
+        <button class="cat-btn" data-i18n="cat_shaders">Shaders</button>
+        <button class="cat-btn" data-i18n="cat_mods">Mods</button>
+        <button class="cat-btn" data-i18n="cat_modpacks">Modpacks</button>
+        <button class="cat-btn" data-i18n="cat_schematics">Schematics</button>
+        <button class="cat-btn" data-i18n="cat_worlds">Mundos</button>
+    </div>
 
-        <!-- ITEMS GRID (MCPEDL / CurseForge Style) -->
-        <div id="itemsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-            <!-- Cards will be dynamically inserted here -->
-        </div>
+    <!-- Categorias Bedrock -->
+    <div class="categories hidden" id="cats-bedrock">
+        <button class="cat-btn active" data-i18n="cat_textures">Texturas</button>
+        <button class="cat-btn" data-i18n="cat_shaders">Shaders</button>
+        <button class="cat-btn" data-i18n="cat_mods">Mods</button>
+        <button class="cat-btn" data-i18n="cat_addons">Addons</button>
+        <button class="cat-btn" data-i18n="cat_holoprints">Holoprints</button>
+        <button class="cat-btn" data-i18n="cat_worlds">Mundos</button>
+    </div>
 
-        <!-- EMPTY STATE -->
-        <div id="emptyState" class="hidden text-center py-16">
-            <i class="fa-solid fa-ghost text-5xl text-brand-purpleLight/40 mb-4"></i>
-            <h3 class="text-xl font-bold text-gray-300" data-i18n="empty_title">Nenhum item encontrado</h3>
-            <p class="text-gray-500 text-sm mt-1" data-i18n="empty_desc">Tente mudar o termo de busca ou a categoria selecionada.</p>
-        </div>
-    </main>
-
-    <!-- DOWNLOAD MODAL (4 BUTTONS) -->
-    <div id="downloadModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-brand-card border border-brand-purple/40 rounded-2xl max-w-2xl w-full p-6 relative shadow-2xl glow-purple overflow-y-auto max-h-[90vh]">
+    <main class="content-container">
+        <!-- GRID JAVA -->
+        <div class="grid" id="grid-java">
             
-            <button onclick="closeDownloadModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white bg-brand-black/50 hover:bg-brand-purple/30 w-8 h-8 rounded-full flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
-
-            <!-- Content Header -->
-            <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center mb-6">
-                <img id="modalImg" src="" alt="Thumbnail" class="w-24 h-24 sm:w-28 sm:h-28 rounded-xl object-cover border border-brand-purple/30">
-                <div>
-                    <div class="flex items-center gap-2 mb-1">
-                        <span id="modalEditionBadge" class="bg-brand-purple/30 text-brand-purpleLight text-xs font-bold px-2.5 py-1 rounded-md border border-brand-purple/40"></span>
-                        <span id="modalCategoryBadge" class="bg-gray-800 text-gray-300 text-xs font-medium px-2.5 py-1 rounded-md"></span>
+            <!-- Exemplo de Card Java -->
+            <div class="card">
+                <!-- Para colocar sua imagem, troque o src abaixo pelo link ou caminho da foto -->
+                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+do+Mod+Aqui" alt="Capa do Mod" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Dweller Survival Modpack</h3>
+                    <span class="card-version">Java 1.20.1 / 1.21</span>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
                     </div>
-                    <h2 id="modalTitle" class="text-2xl font-extrabold text-white"></h2>
-                    <p id="modalVersion" class="text-xs text-gray-400 mt-1 font-mono"></p>
                 </div>
             </div>
 
-            <p id="modalDescription" class="text-sm text-gray-300 mb-6 bg-brand-black/40 p-3 rounded-lg border border-white/5"></p>
-
-            <h3 class="text-sm font-bold text-brand-purpleLight uppercase tracking-wider mb-3 flex items-center gap-2">
-                <i class="fa-solid fa-download"></i> <span data-i18n="modal_options_title">Opções de Download & Tutoriais</span>
-            </h3>
-
-            <!-- THE 4 REQUIRED DOWNLOAD BUTTONS -->
-            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3">
-                <!-- 1. Main Download -->
-                <a id="btnDownload1" href="#" target="_blank" class="flex items-center justify-between p-3.5 bg-brand-purple hover:bg-brand-purpleDark text-white font-bold rounded-xl transition group shadow-md">
-                    <span class="flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-cloud-arrow-down text-lg"></i>
-                        <span data-i18n="dl_link1">Download 1</span>
-                    </span>
-                    <i class="fa-solid fa-arrow-right text-xs opacity-70 group-hover:translate-x-1 transition"></i>
-                </a>
-
-                <!-- 2. Mirror Download -->
-                <a id="btnDownload2" href="#" target="_blank" class="flex items-center justify-between p-3.5 bg-brand-purple/20 hover:bg-brand-purple/40 text-brand-purpleLight hover:text-white border border-brand-purple/40 font-bold rounded-xl transition group">
-                    <span class="flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-link text-lg"></i>
-                        <span data-i18n="dl_link2">Download 2 (Espelho)</span>
-                    </span>
-                    <i class="fa-solid fa-arrow-right text-xs opacity-70 group-hover:translate-x-1 transition"></i>
-                </a>
-
-                <!-- 3. Download Tutorial -->
-                <a id="btnTutorialHowTo" href="#" target="_blank" class="flex items-center justify-between p-3.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-semibold rounded-xl transition group">
-                    <span class="flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-circle-play text-brand-accent text-lg"></i>
-                        <span data-i18n="dl_tut_download">Como Baixar</span>
-                    </span>
-                    <i class="fa-solid fa-circle-info text-xs text-gray-400"></i>
-                </a>
-
-                <!-- 4. Shortener Bypass Tutorial -->
-                <a id="btnTutorialBypass" href="#" target="_blank" class="flex items-center justify-between p-3.5 bg-gray-800 hover:bg-gray-700 text-gray-200 border border-gray-700 font-semibold rounded-xl transition group">
-                    <span class="flex items-center gap-2 text-sm">
-                        <i class="fa-solid fa-unlock-keyhole text-brand-accent text-lg"></i>
-                        <span data-i18n="dl_tut_shortener">Passar Encurtador</span>
-                    </span>
-                    <i class="fa-solid fa-circle-question text-xs text-gray-400"></i>
-                </a>
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+da+Textura" alt="Capa da Textura" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Realistic Shaders + Textura</h3>
+                    <span class="card-version">Java 26.3</span>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                    </div>
+                </div>
             </div>
-        </div>
-    </div>
-
-    <!-- SUPPORT MODAL -->
-    <div id="supportModal" class="fixed inset-0 z-50 hidden bg-black/80 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="bg-brand-card border border-brand-purple/40 rounded-2xl max-w-md w-full p-6 relative shadow-2xl text-center">
             
-            <button onclick="closeSupportModal()" class="absolute top-4 right-4 text-gray-400 hover:text-white bg-brand-black/50 hover:bg-brand-purple/30 w-8 h-8 rounded-full flex items-center justify-center transition">
-                <i class="fa-solid fa-xmark"></i>
-            </button>
+        </div>
 
-            <div class="w-16 h-16 bg-brand-purple/20 text-brand-purpleLight rounded-2xl flex items-center justify-center mx-auto mb-4 border border-brand-purple/30">
-                <i class="fa-solid fa-headset text-2xl"></i>
+        <!-- GRID BEDROCK -->
+        <div class="grid hidden" id="grid-bedrock">
+            
+            <!-- Exemplo de Card Bedrock -->
+            <div class="card">
+                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+do+Addon" alt="Capa do Addon" class="card-img">
+                <div class="card-content">
+                    <h3 class="card-title">Zombie Apocalypse Addon</h3>
+                    <span class="card-version">Bedrock 26.52</span>
+                    <div class="btn-group">
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                    </div>
+                </div>
             </div>
 
-            <h2 class="text-2xl font-bold text-white mb-2" data-i18n="support_title">Suporte SallCraft</h2>
-            <p class="text-sm text-gray-300 mb-6" data-i18n="support_desc">Encontrou algum bug ou link quebrado? Fale diretamente com a equipe de suporte através do nosso e-mail oficial.</p>
-
-            <div class="bg-brand-black/60 p-3 rounded-xl border border-brand-purple/30 mb-6 flex items-center justify-between">
-                <span class="font-mono text-xs text-brand-purpleLight select-all">sallmccount@gmail.com</span>
-                <button onclick="copySupportEmail()" class="text-xs bg-brand-purple/30 hover:bg-brand-purple text-white px-2.5 py-1 rounded transition">
-                    <i class="fa-regular fa-copy"></i>
-                </button>
-            </div>
-
-            <a href="mailto:sallmccount@gmail.com?subject=Suporte%20SallCraft%20-%20Relatorio%20de%20Bug" 
-                class="block w-full py-3 bg-brand-purple hover:bg-brand-purpleDark text-white font-bold rounded-xl transition shadow-lg">
-                <i class="fa-solid fa-paper-plane mr-2"></i>
-                <span data-i18n="support_send_btn">Enviar E-mail Agora</span>
-            </a>
         </div>
-    </div>
+    </main>
 
-    <!-- FOOTER -->
-    <footer class="border-t border-brand-purple/20 bg-brand-black py-8 text-center text-xs text-gray-500 mt-12">
-        <div class="max-w-7xl mx-auto px-4">
-            <p class="font-display font-bold text-gray-400 text-sm mb-1">SALLCRAFT © 2026</p>
-            <p data-i18n="footer_disclaimer">SallCraft não é afiliado à Mojang AB ou Microsoft. Todos os arquivos pertencem aos seus respectivos criadores.</p>
-        </div>
-    </footer>
-
-    <!-- JAVASCRIPT SYSTEM -->
+    <!-- Script de Funcionalidades (Idiomas e Troca de Edição) -->
     <script>
-        // --- TRANSLATION DICTIONARY ---
+        // Dicionário de Idiomas
         const translations = {
             pt: {
-                nav_support: "Suporte",
-                hero_desc: "Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.",
-                search_ph: "Pesquisar por nome, mod ou textura...",
-                empty_title: "Nenhum item encontrado",
-                empty_desc: "Tente mudar o termo de busca ou a categoria selecionada.",
-                modal_options_title: "Opções de Download & Tutoriais",
-                dl_link1: "Download 1",
-                dl_link2: "Download 2 (Espelho)",
-                dl_tut_download: "Como Baixar",
-                dl_tut_shortener: "Passar Encurtador",
-                support_title: "Suporte SallCraft",
-                support_desc: "Encontrou algum bug ou link quebrado? Fale diretamente com a equipe de suporte através do nosso e-mail oficial.",
-                support_send_btn: "Enviar E-mail Agora",
-                footer_disclaimer: "SallCraft não é afiliado à Mojang AB ou Microsoft. Todos os arquivos pertencem aos seus respectivos criadores.",
-                cat_all: "Todos",
-                cat_textures: "Texturas",
-                cat_shaders: "Shaders",
-                cat_mods: "Mods",
-                cat_addons: "Addons",
-                cat_holoprints: "Holoprints",
-                cat_worlds: "Mundos",
-                cat_modpacks: "Modpacks",
-                cat_schematics: "Schematics",
-                btn_view_downloads: "Baixar / Tutoriais"
+                support: "Suporte",
+                title: "Bem vindo ao SallCraft",
+                desc: "Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.",
+                cat_textures: "Texturas", cat_shaders: "Shaders", cat_mods: "Mods", 
+                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Mundos", 
+                cat_addons: "Addons", cat_holoprints: "Holoprints",
+                btn_dl_1: "Download Principal", btn_dl_2: "Download Secundário",
+                btn_tut_dl: "Tutorial: Como Baixar", btn_tut_enc: "Tutorial: Passar Encurtador"
             },
             en: {
-                nav_support: "Support",
-                hero_desc: "Welcome to SallCraft! Here you will find textures, mods, and much more for your Minecraft Bedrock and Java editions.",
-                search_ph: "Search by name, mod, or texture...",
-                empty_title: "No items found",
-                empty_desc: "Try changing your search query or selected category.",
-                modal_options_title: "Download Options & Tutorials",
-                dl_link1: "Download 1",
-                dl_link2: "Download 2 (Mirror)",
-                dl_tut_download: "How to Download",
-                dl_tut_shortener: "Bypass Shortener",
-                support_title: "SallCraft Support",
-                support_desc: "Found a bug or broken link? Contact our support team directly via our official email.",
-                support_send_btn: "Send Email Now",
-                footer_disclaimer: "SallCraft is not affiliated with Mojang AB or Microsoft. All files belong to their respective creators.",
-                cat_all: "All",
-                cat_textures: "Textures",
-                cat_shaders: "Shaders",
-                cat_mods: "Mods",
-                cat_addons: "Addons",
-                cat_holoprints: "Holoprints",
-                cat_worlds: "Worlds",
-                cat_modpacks: "Modpacks",
-                cat_schematics: "Schematics",
-                btn_view_downloads: "Downloads / Tutorials"
+                support: "Support",
+                title: "Welcome to SallCraft",
+                desc: "Welcome to SallCraft, here you will find textures, mods, and much more for your Minecraft Bedrock and Java.",
+                cat_textures: "Textures", cat_shaders: "Shaders", cat_mods: "Mods", 
+                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Worlds", 
+                cat_addons: "Addons", cat_holoprints: "Holoprints",
+                btn_dl_1: "Main Download", btn_dl_2: "Secondary Download",
+                btn_tut_dl: "Tutorial: How to Download", btn_tut_enc: "Tutorial: Bypass Shortener"
             },
             es: {
-                nav_support: "Soporte",
-                hero_desc: "Bienvenido a SallCraft, aquí encontrarás texturas, mods y mucho más para tu Minecraft Bedrock y Java.",
-                search_ph: "Buscar por nombre, mod o textura...",
-                empty_title: "No se encontraron elementos",
-                empty_desc: "Intenta cambiar el término de búsqueda o la categoría seleccionada.",
-                modal_options_title: "Opciones de Descarga y Tutoriales",
-                dl_link1: "Descarga 1",
-                dl_link2: "Descarga 2 (Espejo)",
-                dl_tut_download: "Cómo Descargar",
-                dl_tut_shortener: "Pasar Acortador",
-                support_title: "Soporte SallCraft",
-                support_desc: "¿Encontraste un error o enlace roto? Contacta al equipo de soporte directamente a través de nuestro correo.",
-                support_send_btn: "Enviar Correo Ahora",
-                footer_disclaimer: "SallCraft no está afiliado con Mojang AB o Microsoft. Todos los archivos pertenecen a sus respectivos creadores.",
-                cat_all: "Todos",
-                cat_textures: "Texturas",
-                cat_shaders: "Shaders",
-                cat_mods: "Mods",
-                cat_addons: "Addons",
-                cat_holoprints: "Holoprints",
-                cat_worlds: "Mundos",
-                cat_modpacks: "Modpacks",
-                cat_schematics: "Schematics",
-                btn_view_downloads: "Descargas / Tutoriales"
+                support: "Soporte",
+                title: "Bienvenido a SallCraft",
+                desc: "Bienvenido a SallCraft, aquí encontrarás texturas, mods y mucho más para tu Minecraft Bedrock y Java.",
+                cat_textures: "Texturas", cat_shaders: "Shaders", cat_mods: "Mods", 
+                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Mundos", 
+                cat_addons: "Addons", cat_holoprints: "Holoprints",
+                btn_dl_1: "Descarga Principal", btn_dl_2: "Descarga Secundaria",
+                btn_tut_dl: "Tutorial: Cómo Descargar", btn_tut_enc: "Tutorial: Pasar Acortador"
             }
         };
 
-        // --- CATEGORIES DEFINITION ---
-        const categoriesBedrock = [
-            { id: "all", key: "cat_all" },
-            { id:
+        // Função para mudar o idioma
+        function changeLanguage() {
+            const lang = document.getElementById('langSwitcher').value;
+            const elements = document.querySelectorAll('[data-i18n]');
+            
+            elements.forEach(el => {
+                const key = el.getAttribute('data-i18n');
+                if(translations[lang][key]) {
+                    el.innerText = translations[lang][key];
+                }
+            });
+        }
+
+        // Função para alternar entre Java e Bedrock
+        function switchEdition(edition) {
+            // Botões de aba
+            document.getElementById('btn-java').classList.remove('active');
+            document.getElementById('btn-bedrock').classList.remove('active');
+            document.getElementById('btn-' + edition).classList.add('active');
+
+            // Categorias
+            document.getElementById('cats-java').classList.add('hidden');
+            document.getElementById('cats-bedrock').classList.add('hidden');
+            document.getElementById('cats-' + edition).classList.remove('hidden');
+
+            // Grids de Conteúdo
+            document.getElementById('grid-java').classList.add('hidden');
+            document.getElementById('grid-bedrock').classList.add('hidden');
+            document.getElementById('grid-' + edition).classList.remove('hidden');
+        }
+
+        // Script para deixar a categoria clicada como 'ativa' (efeito visual)
+        document.querySelectorAll('.cat-btn').forEach(btn => {
+            btn.addEventListener('click', function() {
+                // Remove a classe ativa dos botões irmãos
+                let siblings = this.parentNode.children;
+                for(let el of siblings) {
+                    el.classList.remove('active');
+                }
+                // Adiciona no botão clicado
+                this.classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
