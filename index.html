@@ -3,18 +3,18 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>SallCraft - Mods e Texturas</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800&display=swap" rel="stylesheet">
+    <title>SallCraft - Mods, Texturas e Clients</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
     <style>
-        /* Variáveis de Cores */
         :root {
             --bg-dark: #0a0a0c;
             --bg-card: #18181b;
-            --bg-card-hover: #27272a;
+            --bg-card-hover: #242428;
             --primary-purple: #8b5cf6;
             --primary-purple-hover: #7c3aed;
             --text-white: #f8fafc;
             --text-gray: #a1a1aa;
+            --danger-red: #ef4444;
         }
 
         * {
@@ -28,6 +28,33 @@
             background-color: var(--bg-dark);
             color: var(--text-white);
             line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Top Redes Sociais Bar */
+        .social-bar {
+            background-color: #111114;
+            padding: 0.4rem 5%;
+            display: flex;
+            justify-content: flex-end;
+            gap: 1rem;
+            border-bottom: 1px solid #222226;
+            font-size: 0.85rem;
+        }
+
+        .social-bar a {
+            color: var(--text-gray);
+            text-decoration: none;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+        }
+
+        .social-bar a:hover {
+            color: var(--primary-purple);
         }
 
         /* Cabeçalho */
@@ -38,22 +65,37 @@
             justify-content: space-between;
             align-items: center;
             border-bottom: 2px solid var(--primary-purple);
+            position: sticky;
+            top: 0;
+            z-index: 100;
         }
 
-        .logo {
-            font-size: 1.8rem;
-            font-weight: 800;
-            color: var(--text-white);
+        .logo-container {
+            display: flex;
+            align-items: center;
+            gap: 0.8rem;
             text-decoration: none;
         }
 
-        .logo span {
+        .logo-img {
+            height: 40px;
+            width: auto;
+            border-radius: 6px;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: 800;
+            color: var(--text-white);
+        }
+
+        .logo-text span {
             color: var(--primary-purple);
         }
 
         .nav-controls {
             display: flex;
-            gap: 1.5rem;
+            gap: 1rem;
             align-items: center;
         }
 
@@ -75,7 +117,7 @@
         .lang-select {
             background-color: var(--bg-dark);
             color: var(--text-white);
-            border: 1px solid var(--text-gray);
+            border: 1px solid #3f3f46;
             padding: 0.5rem;
             border-radius: 6px;
             outline: none;
@@ -85,8 +127,8 @@
         /* Seção Hero (Início) */
         .hero {
             text-align: center;
-            padding: 4rem 2rem;
-            background: linear-gradient(180deg, rgba(139,92,246,0.15) 0%, var(--bg-dark) 100%);
+            padding: 3.5rem 2rem 2rem 2rem;
+            background: linear-gradient(180deg, rgba(139,92,246,0.12) 0%, var(--bg-dark) 100%);
         }
 
         .hero h1 {
@@ -97,57 +139,93 @@
         .hero p {
             color: var(--text-gray);
             font-size: 1.1rem;
-            max-width: 600px;
+            max-width: 650px;
             margin: 0 auto;
         }
 
-        /* Controle de Versões (Tabs) */
+        /* Controle de Edição/Abas */
         .edition-tabs {
             display: flex;
             justify-content: center;
-            gap: 1rem;
-            margin: 2rem 0;
+            flex-wrap: wrap;
+            gap: 0.8rem;
+            margin: 1.5rem 0 1rem 0;
+            padding: 0 5%;
         }
 
         .tab-btn {
             background-color: var(--bg-card);
             color: var(--text-white);
-            border: none;
-            padding: 1rem 2rem;
-            font-size: 1.1rem;
+            border: 1px solid #27272a;
+            padding: 0.8rem 1.5rem;
+            font-size: 1rem;
             font-weight: 600;
             border-radius: 8px;
             cursor: pointer;
             transition: 0.3s;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .tab-btn:hover {
+            background-color: var(--bg-card-hover);
         }
 
         .tab-btn.active {
             background-color: var(--primary-purple);
+            border-color: var(--primary-purple);
         }
 
-        /* Categorias */
+        /* Barra de Filtros e Ordenação */
+        .controls-bar {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 1rem;
+            max-width: 1400px;
+            margin: 0 auto 1.5rem auto;
+            padding: 0 5%;
+        }
+
         .categories {
             display: flex;
-            justify-content: center;
             flex-wrap: wrap;
             gap: 0.5rem;
-            margin-bottom: 3rem;
-            padding: 0 5%;
         }
 
         .cat-btn {
             background-color: transparent;
             color: var(--text-gray);
-            border: 1px solid var(--text-gray);
+            border: 1px solid #3f3f46;
             padding: 0.4rem 1rem;
             border-radius: 20px;
             cursor: pointer;
             transition: 0.3s;
+            font-size: 0.9rem;
         }
 
         .cat-btn:hover, .cat-btn.active {
             border-color: var(--primary-purple);
             color: var(--primary-purple);
+            background-color: rgba(139, 92, 246, 0.1);
+        }
+
+        .sort-container {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .sort-select {
+            background-color: var(--bg-card);
+            color: var(--text-white);
+            border: 1px solid #3f3f46;
+            padding: 0.4rem 0.8rem;
+            border-radius: 6px;
+            outline: none;
+            cursor: pointer;
         }
 
         /* Grid de Conteúdo */
@@ -155,60 +233,113 @@
             padding: 0 5% 5rem 5%;
             max-width: 1400px;
             margin: 0 auto;
+            width: 100%;
+            flex: 1;
         }
 
         .grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(310px, 1fr));
             gap: 2rem;
         }
 
-        /* Cartão de Mod/Textura */
+        /* Card */
         .card {
             background-color: var(--bg-card);
             border-radius: 12px;
             overflow: hidden;
             transition: transform 0.3s, box-shadow 0.3s;
-            border: 1px solid transparent;
+            border: 1px solid #27272a;
+            position: relative;
+            display: flex;
+            flex-direction: column;
         }
 
         .card:hover {
             transform: translateY(-5px);
             border-color: var(--primary-purple);
-            box-shadow: 0 10px 20px rgba(139, 92, 246, 0.1);
+            box-shadow: 0 10px 25px rgba(139, 92, 246, 0.15);
+        }
+
+        .card-img-wrapper {
+            position: relative;
+            width: 100%;
+            height: 190px;
+            background-color: #27272a;
         }
 
         .card-img {
             width: 100%;
-            height: 180px;
+            height: 100%;
             object-fit: cover;
-            background-color: #2a2a30; /* Cor de fundo caso a foto não carregue */
+        }
+
+        .btn-fav {
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            background: rgba(10, 10, 12, 0.8);
+            border: 1px solid #3f3f46;
+            color: #fff;
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            cursor: pointer;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: 0.2s;
+            backdrop-filter: blur(4px);
+        }
+
+        .btn-fav.active {
+            color: var(--danger-red);
+            border-color: var(--danger-red);
         }
 
         .card-content {
-            padding: 1.5rem;
+            padding: 1.25rem;
+            display: flex;
+            flex-direction: column;
+            flex: 1;
         }
 
         .card-title {
             font-size: 1.2rem;
-            margin-bottom: 0.5rem;
+            margin-bottom: 0.4rem;
+            font-weight: 700;
+        }
+
+        .card-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 1rem;
         }
 
         .card-version {
-            display: inline-block;
             background-color: rgba(139, 92, 246, 0.2);
-            color: #bfa1f9;
+            color: #c4b5fd;
             padding: 0.2rem 0.6rem;
             border-radius: 4px;
-            font-size: 0.85rem;
-            margin-bottom: 1rem;
+            font-size: 0.8rem;
             font-weight: 600;
+        }
+
+        .card-downloads {
+            font-size: 0.8rem;
+            color: var(--text-gray);
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
         }
 
         .btn-group {
             display: flex;
             flex-direction: column;
             gap: 0.5rem;
+            margin-top: auto;
         }
 
         .btn {
@@ -218,7 +349,7 @@
             padding: 0.6rem;
             border-radius: 6px;
             font-weight: 600;
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             transition: 0.2s;
         }
 
@@ -234,31 +365,61 @@
         .btn-tutorial {
             background-color: transparent;
             color: var(--text-gray);
-            border: 1px solid var(--text-gray);
+            border: 1px solid #3f3f46;
         }
 
         .btn-tutorial:hover {
             border-color: var(--text-white);
             color: var(--text-white);
+            background-color: rgba(255, 255, 255, 0.05);
         }
 
-        /* Ocultar seções dinamicamente */
+        .empty-message {
+            text-align: center;
+            grid-column: 1 / -1;
+            padding: 4rem 1rem;
+            color: var(--text-gray);
+            font-size: 1.1rem;
+        }
+
+        footer {
+            background-color: var(--bg-card);
+            text-align: center;
+            padding: 2rem;
+            border-top: 1px solid #27272a;
+            color: var(--text-gray);
+            font-size: 0.9rem;
+            margin-top: auto;
+        }
+
         .hidden {
             display: none !important;
         }
 
-        /* Responsividade */
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2rem; }
+            .hero h1 { font-size: 1.8rem; }
             header { flex-direction: column; gap: 1rem; }
-            .edition-tabs { flex-direction: column; padding: 0 2rem; }
+            .controls-bar { flex-direction: column; align-items: stretch; }
+            .sort-container { justify-content: flex-end; }
         }
     </style>
 </head>
 <body>
 
+    <!-- Social Bar -->
+    <div class="social-bar">
+        <a href="https://tiktok.com/@sall.skkkkk" target="_blank">TikTok</a>
+        <a href="https://youtube.com/@sallkng?si=FRe6uNwS9JgJo" target="_blank">YouTube</a>
+        <a href="https://discord.gg/FmkywjTpzF" target="_blank">Discord</a>
+    </div>
+
+    <!-- Cabeçalho -->
     <header>
-        <a href="#" class="logo">Sall<span>Craft</span></a>
+        <a href="#" class="logo-container">
+            <!-- Coloque a imagem da sua logo no src abaixo -->
+            <img src="https://via.placeholder.com/40/8b5cf6/ffffff?text=SC" alt="SallCraft Logo" class="logo-img" id="siteLogo">
+            <div class="logo-text">Sall<span>Craft</span></div>
+        </a>
         <div class="nav-controls">
             <select class="lang-select" id="langSwitcher" onchange="changeLanguage()">
                 <option value="pt">Português</option>
@@ -269,172 +430,95 @@
         </div>
     </header>
 
+    <!-- Hero -->
     <section class="hero">
         <h1 data-i18n="title">Bem vindo ao SallCraft</h1>
         <p data-i18n="desc">Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.</p>
     </section>
 
+    <!-- Abas de Edições / Tipos -->
     <div class="edition-tabs">
-        <button class="tab-btn active" onclick="switchEdition('java')" id="btn-java">Minecraft Java</button>
-        <button class="tab-btn" onclick="switchEdition('bedrock')" id="btn-bedrock">Minecraft Bedrock</button>
+        <button class="tab-btn active" onclick="switchEdition('java')" id="tab-java">Minecraft Java</button>
+        <button class="tab-btn" onclick="switchEdition('bedrock')" id="tab-bedrock">Minecraft Bedrock</button>
+        <button class="tab-btn" onclick="switchEdition('bedrock-client')" id="tab-bedrock-client">Client Minecraft Bedrock</button>
+        <button class="tab-btn" onclick="switchEdition('java-launcher')" id="tab-java-launcher">Launcher Minecraft Java</button>
+        <button class="tab-btn" onclick="switchEdition('saved')" id="tab-saved">♥ <span data-i18n="tab_saved">Salvos</span></button>
     </div>
 
-    <!-- Categorias Java -->
-    <div class="categories" id="cats-java">
-        <button class="cat-btn active" data-i18n="cat_textures">Texturas</button>
-        <button class="cat-btn" data-i18n="cat_shaders">Shaders</button>
-        <button class="cat-btn" data-i18n="cat_mods">Mods</button>
-        <button class="cat-btn" data-i18n="cat_modpacks">Modpacks</button>
-        <button class="cat-btn" data-i18n="cat_schematics">Schematics</button>
-        <button class="cat-btn" data-i18n="cat_worlds">Mundos</button>
+    <!-- Barra de Filtros e Ordenação -->
+    <div class="controls-bar" id="controlsBar">
+        <!-- Categorias Java -->
+        <div class="categories" id="cats-java">
+            <button class="cat-btn active" onclick="filterCategory('all')" data-i18n="cat_all">Todos</button>
+            <button class="cat-btn" onclick="filterCategory('texturas')" data-i18n="cat_textures">Texturas</button>
+            <button class="cat-btn" onclick="filterCategory('shaders')" data-i18n="cat_shaders">Shaders</button>
+            <button class="cat-btn" onclick="filterCategory('mods')" data-i18n="cat_mods">Mods</button>
+            <button class="cat-btn" onclick="filterCategory('modpacks')" data-i18n="cat_modpacks">Modpacks</button>
+            <button class="cat-btn" onclick="filterCategory('schematics')" data-i18n="cat_schematics">Schematics</button>
+            <button class="cat-btn" onclick="filterCategory('mundos')" data-i18n="cat_worlds">Mundos</button>
+        </div>
+
+        <!-- Categorias Bedrock -->
+        <div class="categories hidden" id="cats-bedrock">
+            <button class="cat-btn active" onclick="filterCategory('all')" data-i18n="cat_all">Todos</button>
+            <button class="cat-btn" onclick="filterCategory('texturas')" data-i18n="cat_textures">Texturas</button>
+            <button class="cat-btn" onclick="filterCategory('shaders')" data-i18n="cat_shaders">Shaders</button>
+            <button class="cat-btn" onclick="filterCategory('mods')" data-i18n="cat_mods">Mods</button>
+            <button class="cat-btn" onclick="filterCategory('addons')" data-i18n="cat_addons">Addons</button>
+            <button class="cat-btn" onclick="filterCategory('holoprints')" data-i18n="cat_holoprints">Holoprints</button>
+            <button class="cat-btn" onclick="filterCategory('mundos')" data-i18n="cat_worlds">Mundos</button>
+        </div>
+
+        <!-- Ordenação -->
+        <div class="sort-container">
+            <label for="sortSelect" style="font-size:0.9rem; color:var(--text-gray);" data-i18n="sort_label">Ordenar por:</label>
+            <select class="sort-select" id="sortSelect" onchange="sortCards()">
+                <option value="downloads" data-i18n="sort_downloads">Mais Instalados</option>
+                <option value="recent" data-i18n="sort_recent">Mais Recentes</option>
+                <option value="oldest" data-i18n="sort_oldest">Mais Antigos</option>
+            </select>
+        </div>
     </div>
 
-    <!-- Categorias Bedrock -->
-    <div class="categories hidden" id="cats-bedrock">
-        <button class="cat-btn active" data-i18n="cat_textures">Texturas</button>
-        <button class="cat-btn" data-i18n="cat_shaders">Shaders</button>
-        <button class="cat-btn" data-i18n="cat_mods">Mods</button>
-        <button class="cat-btn" data-i18n="cat_addons">Addons</button>
-        <button class="cat-btn" data-i18n="cat_holoprints">Holoprints</button>
-        <button class="cat-btn" data-i18n="cat_worlds">Mundos</button>
-    </div>
-
+    <!-- Conteúdo Principal -->
     <main class="content-container">
-        <!-- GRID JAVA -->
-        <div class="grid" id="grid-java">
+        <div class="grid" id="mainGrid">
             
-            <!-- Exemplo de Card Java -->
-            <div class="card">
-                <!-- Para colocar sua imagem, troque o src abaixo pelo link ou caminho da foto -->
-                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+do+Mod+Aqui" alt="Capa do Mod" class="card-img">
+            <!-- BEDROCK: Durability Viewer -->
+            <div class="card" data-edition="bedrock" data-category="mods" data-downloads="12450" data-date="2026-10-01" id="item-durability-viewer">
+                <div class="card-img-wrapper">
+                    <img src="https://ibb.co/fzWSdFdK" onerror="this.src='https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Durability+Viewer'" alt="Durability Viewer" class="card-img">
+                    <button class="btn-fav" onclick="toggleFavorite('item-durability-viewer')">♥</button>
+                </div>
                 <div class="card-content">
-                    <h3 class="card-title">Dweller Survival Modpack</h3>
-                    <span class="card-version">Java 1.20.1 / 1.21</span>
+                    <h3 class="card-title">Durability Viewer</h3>
+                    <div class="card-meta">
+                        <span class="card-version">Bedrock 26.52</span>
+                        <span class="card-downloads">📥 12.4k</span>
+                    </div>
                     <div class="btn-group">
-                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
-                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
-                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
-                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                        <a href="https://seulink.digital/DurabilityViewer-v111" target="_blank" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="https://1024terabox.com/s/1LKMKWnNrzcB2OR-jipOs9w" target="_blank" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="https://youtu.be/jKg4C0lVB74?si=JsrvKGEPBVLp5Qsh" target="_blank" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
+                        <a href="https://youtu.be/YH-ZHJcX3e4?si=RgfGNWdWUHypIbgV" target="_blank" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
                     </div>
                 </div>
             </div>
 
-            <div class="card">
-                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+da+Textura" alt="Capa da Textura" class="card-img">
-                <div class="card-content">
-                    <h3 class="card-title">Realistic Shaders + Textura</h3>
-                    <span class="card-version">Java 26.3</span>
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
-                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
-                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
-                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
-                    </div>
+            <!-- JAVA: Sound Physics Remastered -->
+            <div class="card" data-edition="java" data-category="mods" data-downloads="25800" data-date="2026-10-02" id="item-sound-physics">
+                <div class="card-img-wrapper">
+                    <img src="https://ibb.co/tMTbT4zH" onerror="this.src='https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Sound+Physics+Remastered'" alt="Sound Physics Remastered" class="card-img">
+                    <button class="btn-fav" onclick="toggleFavorite('item-sound-physics')">♥</button>
                 </div>
-            </div>
-            
-        </div>
-
-        <!-- GRID BEDROCK -->
-        <div class="grid hidden" id="grid-bedrock">
-            
-            <!-- Exemplo de Card Bedrock -->
-            <div class="card">
-                <img src="https://via.placeholder.com/600x400/2a2a30/8b5cf6?text=Foto+do+Addon" alt="Capa do Addon" class="card-img">
                 <div class="card-content">
-                    <h3 class="card-title">Zombie Apocalypse Addon</h3>
-                    <span class="card-version">Bedrock 26.52</span>
-                    <div class="btn-group">
-                        <a href="#" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
-                        <a href="#" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
-                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_dl">Tutorial: Como Baixar</a>
-                        <a href="#" class="btn btn-tutorial" data-i18n="btn_tut_enc">Tutorial: Passar Encurtador</a>
+                    <h3 class="card-title">Sound Physics Remastered</h3>
+                    <div class="card-meta">
+                        <span class="card-version">Java 26.3</span>
+                        <span class="card-downloads">📥 25.8k</span>
                     </div>
-                </div>
-            </div>
-
-        </div>
-    </main>
-
-    <!-- Script de Funcionalidades (Idiomas e Troca de Edição) -->
-    <script>
-        // Dicionário de Idiomas
-        const translations = {
-            pt: {
-                support: "Suporte",
-                title: "Bem vindo ao SallCraft",
-                desc: "Bem vindo ao site SallCraft, aqui você irá encontrar texturas, mods e muito mais para seu Minecraft Bedrock e Java.",
-                cat_textures: "Texturas", cat_shaders: "Shaders", cat_mods: "Mods", 
-                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Mundos", 
-                cat_addons: "Addons", cat_holoprints: "Holoprints",
-                btn_dl_1: "Download Principal", btn_dl_2: "Download Secundário",
-                btn_tut_dl: "Tutorial: Como Baixar", btn_tut_enc: "Tutorial: Passar Encurtador"
-            },
-            en: {
-                support: "Support",
-                title: "Welcome to SallCraft",
-                desc: "Welcome to SallCraft, here you will find textures, mods, and much more for your Minecraft Bedrock and Java.",
-                cat_textures: "Textures", cat_shaders: "Shaders", cat_mods: "Mods", 
-                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Worlds", 
-                cat_addons: "Addons", cat_holoprints: "Holoprints",
-                btn_dl_1: "Main Download", btn_dl_2: "Secondary Download",
-                btn_tut_dl: "Tutorial: How to Download", btn_tut_enc: "Tutorial: Bypass Shortener"
-            },
-            es: {
-                support: "Soporte",
-                title: "Bienvenido a SallCraft",
-                desc: "Bienvenido a SallCraft, aquí encontrarás texturas, mods y mucho más para tu Minecraft Bedrock y Java.",
-                cat_textures: "Texturas", cat_shaders: "Shaders", cat_mods: "Mods", 
-                cat_modpacks: "Modpacks", cat_schematics: "Schematics", cat_worlds: "Mundos", 
-                cat_addons: "Addons", cat_holoprints: "Holoprints",
-                btn_dl_1: "Descarga Principal", btn_dl_2: "Descarga Secundaria",
-                btn_tut_dl: "Tutorial: Cómo Descargar", btn_tut_enc: "Tutorial: Pasar Acortador"
-            }
-        };
-
-        // Função para mudar o idioma
-        function changeLanguage() {
-            const lang = document.getElementById('langSwitcher').value;
-            const elements = document.querySelectorAll('[data-i18n]');
-            
-            elements.forEach(el => {
-                const key = el.getAttribute('data-i18n');
-                if(translations[lang][key]) {
-                    el.innerText = translations[lang][key];
-                }
-            });
-        }
-
-        // Função para alternar entre Java e Bedrock
-        function switchEdition(edition) {
-            // Botões de aba
-            document.getElementById('btn-java').classList.remove('active');
-            document.getElementById('btn-bedrock').classList.remove('active');
-            document.getElementById('btn-' + edition).classList.add('active');
-
-            // Categorias
-            document.getElementById('cats-java').classList.add('hidden');
-            document.getElementById('cats-bedrock').classList.add('hidden');
-            document.getElementById('cats-' + edition).classList.remove('hidden');
-
-            // Grids de Conteúdo
-            document.getElementById('grid-java').classList.add('hidden');
-            document.getElementById('grid-bedrock').classList.add('hidden');
-            document.getElementById('grid-' + edition).classList.remove('hidden');
-        }
-
-        // Script para deixar a categoria clicada como 'ativa' (efeito visual)
-        document.querySelectorAll('.cat-btn').forEach(btn => {
-            btn.addEventListener('click', function() {
-                // Remove a classe ativa dos botões irmãos
-                let siblings = this.parentNode.children;
-                for(let el of siblings) {
-                    el.classList.remove('active');
-                }
-                // Adiciona no botão clicado
-                this.classList.add('active');
-            });
-        });
-    </script>
-</body>
-</html>
+                    <div class="btn-group">
+                        <a href="https://seulink.digital/Sound_Physics_Remastered" target="_blank" class="btn btn-download" data-i18n="btn_dl_1">Download Principal</a>
+                        <a href="https://1024terabox.com/s/1bZEJ_yhu0kVDglPhLw4DOg" target="_blank" class="btn btn-download" data-i18n="btn_dl_2">Download Secundário</a>
+                        <a href="https://youtu.be/jKg4C0lVB74?si=JsrvKGEPBVLp5Qsh" target="_blank
+    
